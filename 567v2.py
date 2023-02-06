@@ -1,44 +1,49 @@
-from math import factorial,fabs
+from math import factorial
 class Solution:
     def checkInclusion(self, s1: str, s2: str) -> bool:
         len1 = len(s1)
         nlst = list(s1)
-        # hsmp = {}
         def swap(slst):
-            len1 = len(slst)
-            for i in range(1,factorial(len1)//len1 + 1):
-                for j in range(1,len1+1):
-                    k=j
-                    if k == len1:
-                        k=1
-                    else:
-                        k+=1
-                    slst[-j],slst[-k]=slst[-k],slst[-j]
-                    print(slst)
-        def rec(lst1): 
-            result=list(s1)
-            mps=list(lst1)
-            for i in sorted(mps):
-                # result.remove(i)
-                mps.remove(i)
-                for j in mps:
-                    result.remove(j)
-                print(f'HEAD: {result}; TMPS: {mps}; List: {lst1}')
-                swap(mps)
-                # for k in range(0, len(mps)):
-                #     tresult=list()
-                #     tmps=list(mps)
-                #     j=k
-                #     if j+1 > len1:
-                #         j=1
-                #     else:
-                #         j+=1
-                #     tmps[-j],tmps[-k]=tmps[-k],tmps[-j]
-                #     tmps = ''.join(tmps)
-                #     tresult.append(tmps)
-                #     tresult = ''.join(tresult)
-                #     print(''.join(result)+tresult) #Отсюда можно сделать сравнение со второй строкой
-                return rec(mps)
+            hsmp = list()
+            if slst:
+                len1 = len(slst)
+                for i in range(1,factorial(len1)//len1 + 1):
+                    for j in range(1,len1+1):
+                        #switching tail
+                        k=j
+                        if k == len1:
+                            k=1
+                        else:
+                            k+=1
+                        #swap  
+                        slst[-j],slst[-k]=slst[-k],slst[-j]
+                        # print(slst)
+                        hsmp.append(''.join(slst))
+            return hsmp
+            
+        def rec(lst1):
+            head=list()
+            tail=list(s1)
+            tmps=list(lst1)
+            for i in tmps:
+                
+                head.append(i)
+                tail.remove(i)
+                tmps.remove(i)
+                
+                print(f'HEAD: {head}; TAIL: {tail}; List: {lst1}; TMP: {tmps}')
+                tswap = swap(tail)
+                # print(tswap)
+                for i in tswap:
+                    head2 = list(head)
+                    tail2=list(s1)
+                    print(list(''.join(head2)+i))
+                    # for j in head:
+                    #     tail2.remove(i)
+                    #     rec(tail2)
+                        
+                    
+                return rec(tmps)
         rec(nlst)            
             
 
