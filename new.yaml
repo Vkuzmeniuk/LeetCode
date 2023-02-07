@@ -1,0 +1,30 @@
+apiVersion: v1
+---
+- - uno
+  - due
+  - tre
+...
+Output
+[['uno', 'due', 'tre']]
+---
+cucumber: green
+plum: purple
+apple: red
+...
+Output
+{'apple': 'red', 'cucumber': 'green', 'plum': 'purple'}
+---
+Hulk:
+  - - Bruce
+    - Banner
+Black Widow:
+  - - Natasha
+    - Romanoff
+Spider-Man:
+  - - Peter
+    - Parker
+...
+Output
+{'Black Widow': [['Natasha', 'Romanoff']],
+ 'Hulk': [['Bruce', 'Banner']],
+ 'Spider-Man': [['Peter', 'Parker']]}
