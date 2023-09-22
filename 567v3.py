@@ -21,15 +21,22 @@ class Solution:
                         hsmp.append(''.join(slst))
             return hsmp
         
-        def rec(lst1):
+        def check(s3: str) -> bool:
+            for smbl in s3:
+                if s2.find(smbl) <0:
+                    return False
+                return True
+            
+        
+        def rec(lst1: list) -> bool:
             head=list()
             tail=list(lst1)
             tmps=list(tail)
+            if not check(lst1):
+                return False
             for i in tmps:
-                # print(f'Head: {head}; Tail: {tail}; TMPS: {tmps}')
                 tswap_tail = swap(tail)
                 tswap_head = swap(head)
-                
                 for j in tswap_tail:
                     if tswap_head:
                         for k in tswap_head:
@@ -60,4 +67,8 @@ print(f"Output: {sol.checkInclusion(s1, s2)}")
 
 s1 = "abcd"
 s2 = "acbd"
+print(f"Output: {sol.checkInclusion(s1, s2)}")
+
+s1 = "dinitrophenylhydrazine"
+s2 = "acetylphenylhydrazine"
 print(f"Output: {sol.checkInclusion(s1, s2)}")
